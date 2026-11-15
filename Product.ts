@@ -1,4 +1,4 @@
-import { Required, PositiveNumber, Validator } from "./Validator";
+import { Required, PositiveNumber, Validator } from "./Validator.js";
 
 class Course {
   @Required
@@ -25,7 +25,8 @@ courseForm.addEventListener("submit", (event) => {
   const courseTitle = courseTitleEl.value;
   const coursePrice = +coursePriceEl.value;
   const newCourse = new Course(courseTitle, coursePrice);
-  if (!Validator(newCourse)) {
+  const validityResult = Validator(newCourse);
+  if (!validityResult?.isValid) {
     alert("Invalid Course data");
     return;
   }
